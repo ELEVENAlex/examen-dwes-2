@@ -6,3 +6,31 @@
 a {
   color: #00B7FF;
 } */
+
+#main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 94vh;
+  width: 100%;
+  background: url('https://4kwallpapers.com/images/wallpapers/dark-background-abstract-background-network-3d-background-2560x1440-8324.png')
+  
+}
+#main h1{
+  color: white;
+  font-size: 40px;
+}
+
+#caja{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 20vh;
+}
+#caja a{
+  color: white;
+  padding: 20px;
+  font-size: 20px;
+  text-decoration: none;
+}

@@ -3,7 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send('Bienvenido a las fotos')
+  res.render('landing')
 });
 
 module.exports = router;

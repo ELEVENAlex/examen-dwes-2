@@ -21,3 +21,10 @@ CREATE TABLE comentarios(
     FOREIGN KEY (id_imagen) REFERENCES imagenes(id),
     fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE usuarios(
+	id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    username varchar(100) NOT NULL,
+    email varchar(255) NOT NULL,
+    password varchar(255) NOT NULL
+);

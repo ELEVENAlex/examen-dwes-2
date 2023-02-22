@@ -3,16 +3,35 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session')
+const smysql = require('express-mysql-session')
+const passport = require('passport')
+
+require('dotenv').config()
 
 const indexRouter = require('./routes/index');
 const fotosRouter = require('./routes/fotos');
 const comentariosRouter = require('./routes/comentarios');
+const authRouter = require('./routes/authentication');
 
 const app = express();
+require('./lib/passport')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(session({
+  secret: 'cosa',
+  resave: false,
+  saveUninitialized: false,
+  store: new smysql({
+      host: process.env.HOST,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE
+  })
+}))
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -22,6 +41,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/fotos', fotosRouter);
 app.use('/fotos', comentariosRouter)
+app.use('/', authRouter)
 
 app.use(express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
