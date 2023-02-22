@@ -1,0 +1,20 @@
+DROP DATABASE IF EXISTS imagenesdb;
+CREATE DATABASE imagenesdb CHARSET utf8mb4;
+USE imagenesdb;
+
+CREATE TABLE imagenes(
+    id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    imagen text NOT NULL,
+    titulo VARCHAR(200),
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    likes INT NOT NULL,
+    dislikes INT NOT NULL
+);
+
+CREATE TABLE comentarios(
+    id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    autor VARCHAR(60) NOT NULL,
+    id_imagen INT UNSIGNED NOT NULL,
+    FOREIGN KEY (id_imagen) REFERENCES imagenes(id)
+);
