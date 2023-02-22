@@ -19,6 +19,16 @@ router.get('/peorvaloradas', async (req, res) => {
   res.render('fotos', {imagenes: rows})
 });
 
+router.get('/comentadas', async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM imagenes WHERE id in (SELECT id_imagen FROM comentarios)')
+  res.render('fotos', {imagenes: rows})
+});
+
+router.get('/nocomentadas', async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM imagenes WHERE id not in (SELECT id_imagen FROM comentarios)')
+  res.render('fotos', {imagenes: rows})
+});
+
 router.get('/addimage', async (req, res) => {
   res.render('nuevafoto')
 })

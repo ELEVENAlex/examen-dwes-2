@@ -6,15 +6,18 @@ CREATE TABLE imagenes(
     id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     imagen text NOT NULL,
     titulo VARCHAR(200),
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    descripcion text,
     likes INT NOT NULL,
-    dislikes INT NOT NULL
+    dislikes INT NOT NULL,
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
+drop table comentarios;
 CREATE TABLE comentarios(
     id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     autor VARCHAR(60) NOT NULL,
+    comentario text NOT NULL,
     id_imagen INT UNSIGNED NOT NULL,
-    FOREIGN KEY (id_imagen) REFERENCES imagenes(id)
+    FOREIGN KEY (id_imagen) REFERENCES imagenes(id),
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
